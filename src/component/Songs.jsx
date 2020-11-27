@@ -25,14 +25,14 @@ class Songs extends Component {
         </a>
         <p>
           <Link to={"/album/" + this.props.song.album.id} className="nav-link">
-            Album: {this.props.song.album.title}
+            {this.props.song.album.title}
           </Link>
 
           <Link
             to={"/artistPage/" + this.props.song.artist.id}
             className="nav-link"
           >
-            Artist: {this.props.song.artist.name}
+            {this.props.song.artist.name}
           </Link>
         </p>
       </div>

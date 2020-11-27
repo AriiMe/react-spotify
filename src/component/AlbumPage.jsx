@@ -10,15 +10,8 @@ class AlbumPage extends Component {
     loading: true,
   };
 
-  albumToFooter = (albumId, albumCover, albumLabel, albumTitle) =>
-    this.props.sendAlbum(albumId, albumCover, albumLabel, albumTitle);
-
   componentDidMount = () => {
     const albumId = this.props.match.params.id;
-    let headers = new Headers({
-      "x-rapidapi-key": "7ecdbfef58msh2e0fb8f65f6ade8p162ee4jsn8307347ed24c",
-      "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
-    });
 
     fetch("https://deezerdevs-deezer.p.rapidapi.com/album/" + albumId, {
       method: "GET",
@@ -53,7 +46,6 @@ class AlbumPage extends Component {
   };
 
   render() {
-    console.log("props from app.js", this.props);
     return (
       <>
         <div className="col-12 col-md-9 offset-md-3 mainPage">
@@ -67,12 +59,12 @@ class AlbumPage extends Component {
               <div className="mt-4 text-center">
                 <p className="album-title">{this.state.albums.title}</p>
               </div>
-              <div className="text-center">
+              <div className="text-center artist-name">
                 <Link
                   to={"/artistPage/" + this.state.artistName.id}
                   className="nav-link"
                 >
-                  Album: {this.state.artistName.name}
+                  {this.state.artistName.name}
                 </Link>
               </div>
               <div className="mt-4 text-center">

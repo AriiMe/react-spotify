@@ -16,8 +16,8 @@ class SideBar extends Component {
                 <img
                   src="/logo/Spotify_Logo.png"
                   alt="Spotify_Logo"
-                  width="131"
-                  height="40"
+                  width="140"
+                  height="45"
                 />
               </a>
               <button
@@ -37,12 +37,6 @@ class SideBar extends Component {
                     <li>
                       <a className="nav-item nav-link" href="/">
                         <i className="fas fa-home fa-lg"></i>&nbsp; Home
-                      </a>
-                    </li>
-                    <li>
-                      <a className="nav-item nav-link" href="#">
-                        <i className="fas fa-book-open fa-lg"></i>&nbsp; Your
-                        Library
                       </a>
                     </li>
                   </ul>

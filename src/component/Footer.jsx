@@ -1,12 +1,12 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-const footerPage = () => {
+const footer = () => {
   return (
     <>
       <div className="container-fluid fixed-bottom bg-container pt-1">
-        <div className="row d-flex">
-          <div className="col-lg-10 ">
+        <div className="row d-flex ">
+          <div className="col-lg-10 text-center  ">
             <div className="row">
               <div className="col-6 col-md-4 col-lg-2 offset-3 offset-md-4 offset-lg-5 playerControls mt-1">
                 <div className="row">
@@ -48,4 +48,4 @@ const footerPage = () => {
   );
 };
 
-export default withRouter(footerPage);
+export default withRouter(footer);

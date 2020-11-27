@@ -2,23 +2,21 @@ import React, { Component } from "react";
 
 import Display from "./Display";
 
-let rockArtists = ["u2", "smashmouth", "greenday", "lorn"];
+let firstPlaylist = ["u2", "smashmouth", "greenday", "lorn"];
 
-let popArtists = ["ladygaga", "djblyatman", "area", "nekrogoblikon"];
+let secondPlaylist = ["ladygaga", "djblyatman", "area", "nekrogoblikon"];
 
-let hipHopArtists = ["ghostemane", "lilpeep", "killstation", "$uicideboy$", ,];
+let thirdPlaylist = ["ghostemane", "lilpeep", "killstation", "$uicideboy$", ,];
 
 class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Rock: [],
-      Hiphop: [],
-      Pop: [],
-      searchedMovies: [],
+      firstRow: [],
+      secondRow: [],
+      thirdRow: [],
       loading: true,
       error: false,
-      comments: [],
     };
   }
 
@@ -28,44 +26,42 @@ class HomePage extends Component {
       "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
     });
 
-    let rockRandomArtists = [];
-    let popRandomArtists = [];
-    let hipHopRandomArtists = [];
+    let pl1 = [];
+    let pl2 = [];
+    let pl3 = [];
 
-    while (rockRandomArtists.length < 4) {
-      let artist = rockArtists[Math.floor(Math.random() * rockArtists.length)];
-
-      if (!rockRandomArtists.includes(artist)) {
-        rockRandomArtists.push(artist);
-      }
-    }
-
-    while (popRandomArtists.length < 4) {
-      let artist = popArtists[Math.floor(Math.random() * popArtists.length)];
-
-      if (!popRandomArtists.includes(artist)) {
-        popRandomArtists.push(artist);
-      }
-    }
-
-    while (hipHopRandomArtists.length < 4) {
+    while (pl1.length < 4) {
       let artist =
-        hipHopArtists[Math.floor(Math.random() * hipHopArtists.length)];
+        firstPlaylist[Math.floor(Math.random() * firstPlaylist.length)];
 
-      if (!hipHopRandomArtists.includes(artist)) {
-        hipHopRandomArtists.push(artist);
+      if (!pl1.includes(artist)) {
+        pl1.push(artist);
       }
     }
-    const rock = [];
-    for (let i = 0; i < rockRandomArtists.length; i++) {
-      fetch(
-        "https://deezerdevs-deezer.p.rapidapi.com/search?q=" +
-          rockRandomArtists[i],
-        {
-          method: "GET",
-          headers,
-        }
-      )
+
+    while (pl2.length < 4) {
+      let artist =
+        secondPlaylist[Math.floor(Math.random() * secondPlaylist.length)];
+
+      if (!pl2.includes(artist)) {
+        pl2.push(artist);
+      }
+    }
+
+    while (pl3.length < 4) {
+      let artist =
+        thirdPlaylist[Math.floor(Math.random() * thirdPlaylist.length)];
+
+      if (!pl3.includes(artist)) {
+        pl3.push(artist);
+      }
+    }
+    const firstRow = [];
+    for (let i = 0; i < pl1.length; i++) {
+      fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=" + pl1[i], {
+        method: "GET",
+        headers,
+      })
         .then((response) => {
           if (response.ok) {
             return response.json();
@@ -73,27 +69,23 @@ class HomePage extends Component {
         })
         .then((artists) => {
           let songInfo = artists.data;
-          rock.push(songInfo[0]);
+          firstRow.push(songInfo[0]);
           // console.log(songInfo)
-          this.setState({ Rock: rock, loading: false });
-          // console.log('state ', this.state.Rock)
-          return rock;
+          this.setState({ firstRow: firstRow, loading: false });
+          // console.log('state ', this.state.firstRow)
+          return firstRow;
         })
         .catch((error) => {
           console.log(error);
         });
     }
 
-    const pop = [];
-    for (let i = 0; i < popRandomArtists.length; i++) {
-      fetch(
-        "https://deezerdevs-deezer.p.rapidapi.com/search?q=" +
-          popRandomArtists[i],
-        {
-          method: "GET",
-          headers,
-        }
-      )
+    const thirdRow = [];
+    for (let i = 0; i < pl2.length; i++) {
+      fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=" + pl2[i], {
+        method: "GET",
+        headers,
+      })
         .then((response) => {
           if (response.ok) {
             return response.json();
@@ -101,28 +93,24 @@ class HomePage extends Component {
         })
         .then((artists) => {
           let songInfo = artists.data;
-          pop.push(songInfo[0]);
+          thirdRow.push(songInfo[0]);
           this.setState({
             loading: false,
-            Pop: pop,
+            thirdRow: thirdRow,
           });
 
-          return pop;
+          return thirdRow;
         })
         .catch((error) => {
           console.log(error);
         });
     }
-    const hipHop = [];
-    for (let i = 0; i < hipHopRandomArtists.length; i++) {
-      fetch(
-        "https://deezerdevs-deezer.p.rapidapi.com/search?q=" +
-          hipHopRandomArtists[i],
-        {
-          method: "GET",
-          headers,
-        }
-      )
+    const secondRow = [];
+    for (let i = 0; i < pl3.length; i++) {
+      fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=" + pl3[i], {
+        method: "GET",
+        headers,
+      })
         .then((response) => {
           if (response.ok) {
             return response.json();
@@ -130,10 +118,10 @@ class HomePage extends Component {
         })
         .then((artists) => {
           let songInfo = artists.data;
-          hipHop.push(songInfo[0]);
-          this.setState({ Hiphop: hipHop, loading: false });
+          secondRow.push(songInfo[0]);
+          this.setState({ secondRow: secondRow, loading: false });
 
-          return hipHop;
+          return secondRow;
         })
         .catch((error) => {
           console.log(error);
@@ -146,60 +134,49 @@ class HomePage extends Component {
       <>
         <div className="col-12 col-md-9 offset-md-3 mainPage">
           <div className="row">
-            <div className="col-9 col-lg-11 mainLinks d-none d-md-flex">
+            <div className="col-9 col-lg-11 sections d-none d-md-flex">
               <a href="#">TRENDING</a>
-
               <a href="#">MOODS AND GENRES</a>
               <a href="#">NEW RELEASES</a>
               <a href="#">DISCOVER</a>
             </div>
           </div>
+
           <div className="row">
             <div className="col-10">
-              <div id="searchResults" className="d-none">
-                <h2>Search Results</h2>
+              <div id="firstPlaylist">
+                <h2>Playlist 1</h2>
+                <Display
+                  loading={this.state.loading}
+                  songs={this.state.firstRow}
+                />
+
                 <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"></div>
               </div>
             </div>
           </div>
           <div className="row">
             <div className="col-10">
-              <div id="rock">
-                <h2>Rock Classics</h2>
-                <Display loading={this.state.loading} songs={this.state.Rock} />
-
-                <div
-                  className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
-                  id="rockSection"
-                ></div>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-10">
-              <div id="pop">
-                <h2>Pop Artists</h2>
-                <Display loading={this.state.loading} songs={this.state.Pop} />
-                <div
-                  className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
-                  id="popSection"
-                ></div>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-10">
-              <div id="hiphop">
-                <h2>HipHop Top</h2>
+              <div id="secondPlaylist">
+                <h2>Playlist 2</h2>
                 <Display
                   loading={this.state.loading}
-                  songs={this.state.Hiphop}
+                  songs={this.state.thirdRow}
+                />
+                <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"></div>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-10">
+              <div id="thirdPlaylist">
+                <h2>Playlist 3</h2>
+                <Display
+                  loading={this.state.loading}
+                  songs={this.state.secondRow}
                 />
 
-                <div
-                  className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
-                  id="hipHopSection"
-                ></div>
+                <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"></div>
               </div>
             </div>
           </div>
