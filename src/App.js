@@ -7,24 +7,12 @@ import AlbumPage from "./component/AlbumPage";
 import Artistpage from "./component/ArtistPage";
 import "./App.css";
 
-const albumArr = [];
 class App extends Component {
   state = {
     albumId: null,
     albumCover: null,
     albumLabel: null,
     albumTitle: null,
-  };
-
-  albumToFooter = (albumId, albumCover, albumLabel, albumTitle) => {
-    return albumArr.push(
-      this.setState({
-        albumId: albumId,
-        albumCover: albumCover,
-        albumLabel: albumLabel,
-        albumTitle: albumTitle,
-      })
-    );
   };
 
   render() {
@@ -37,16 +25,9 @@ class App extends Component {
           <Route
             path="/album/:id"
             exact
-            render={(props) => (
-              <AlbumPage {...props} sendAlbum={this.albumToFooter} />
-            )}
+            render={(props) => <AlbumPage {...props} />}
           />
-          <FooterPage
-            footerId={this.state.albumId}
-            footerCover={this.state.albumCover}
-            footerLable={this.state.albumLabel}
-            footerTitle={this.state.albumTitle}
-          />
+          <FooterPage />
         </Router>
       </>
     );
