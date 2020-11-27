@@ -70,9 +70,9 @@ class HomePage extends Component {
         .then((artists) => {
           let songInfo = artists.data;
           firstRow.push(songInfo[0]);
-          // console.log(songInfo)
+
           this.setState({ firstRow: firstRow, loading: false });
-          // console.log('state ', this.state.firstRow)
+
           return firstRow;
         })
         .catch((error) => {

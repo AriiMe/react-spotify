@@ -6,7 +6,6 @@ class ArtistPage extends Component {
     albums: [],
     tracksresponse: [],
     artistName: [],
-    textValue: "FOLLOW",
     loading: true,
   };
 
@@ -23,9 +22,6 @@ class ArtistPage extends Component {
         return response.json();
       })
       .then((artist) => {
-        //console.log("response from fetch", response.json());
-        //let albums = album
-        // let tracks = album.tracks.data
         const artistName = artist;
         this.setState({
           artistName: artistName,
@@ -36,7 +32,7 @@ class ArtistPage extends Component {
         fetch(
           "https://deezerdevs-deezer.p.rapidapi.com/artist/" +
             artistId +
-            "/top?limit=50",
+            "/top?limit=20",
           {
             method: "GET",
             headers: {
@@ -74,9 +70,7 @@ class ArtistPage extends Component {
           <div className="row">
             <div className="col-12 col-md-10 col-lg-10 mt-5">
               <h2 className="titleMain">{this.state.artistName.name}</h2>
-              <div id="followers">
-                Followers: {this.state.artistName.nb_fan}
-              </div>
+              <hr />
               <div
                 className="d-flex justify-content-center"
                 id="button-container"

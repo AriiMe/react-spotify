@@ -120,7 +120,7 @@ ul {
 
 
 .sections {
-  font-family: proxima-nova, sans-serif;
+
   margin-top: 1.5rem;
   justify-content: space-evenly;
 }
@@ -212,7 +212,7 @@ ul {
 }
 
 .album-title {
-  font-family: proxima-nova, sans-serif;
+
   color: white;
   font-weight: bold;
   font-size: x-large;
@@ -222,7 +222,7 @@ ul {
 
 
 .artist-name a {
-  font-family: proxima-nova, sans-serif;
+
   color: white;
 }
 
@@ -235,6 +235,6 @@ ul {
 }
 
 #songInfo {
-  font-family: proxima-nova, sans-serif;
+
   color: white
 }
